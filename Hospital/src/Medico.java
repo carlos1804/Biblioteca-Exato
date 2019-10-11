@@ -1,5 +1,14 @@
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+
 @Entity
 public class Medico implements Identificavel {
 	@Id
@@ -8,6 +17,11 @@ public class Medico implements Identificavel {
 	private String nome;
 	private int telefone_celular;
 	private String especialidade;
+	@GeneratedValue(generator = "Medico_Bebe", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "Medico_Bebe", sequenceName = "Medico_Bebe")
+	@ManyToMany
+	@JoinTable(name = "Medico_Bebe", joinColumns = @JoinColumn(name = "id_medico"), inverseJoinColumns = @JoinColumn(name = "id_bebe"))
+	private Set<Bebe> bebe;
 
 	public Long getId() {
 		return Id;

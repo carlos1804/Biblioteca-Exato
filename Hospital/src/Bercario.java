@@ -1,5 +1,7 @@
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 @Entity
 public class Bercario implements Identificavel {
 	@Id
@@ -8,42 +10,56 @@ public class Bercario implements Identificavel {
 	private int telefone;
 	private int data_nascinento_bebe;
 	private String endereco;
+
+	@OneToMany(mappedBy = "hospital")
+	Hospital hospital;
+
 	public Long getId() {
 		return Id;
 	}
+
 	public void setId(Long id) {
 		Id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public int getTelefone() {
 		return telefone;
 	}
+
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
+
 	public int getData_nascinento_bebe() {
 		return data_nascinento_bebe;
 	}
+
 	public void setData_nascinento_bebe(int data_nascinento_bebe) {
 		this.data_nascinento_bebe = data_nascinento_bebe;
 	}
+
 	public String getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
 	@Override
 	public String toString() {
 		return "Bercario [Id=" + Id + ", nome=" + nome + ", telefone=" + telefone + ", data_nascinento_bebe="
 				+ data_nascinento_bebe + ", endereco=" + endereco + "]";
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,8 +90,5 @@ public class Bercario implements Identificavel {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }

@@ -1,13 +1,20 @@
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 @Entity
 
-
-public class Categoria implements Identificavel  {
-@Id
+public class Categoria implements Identificavel {
+	@Id
 	private Long Id;
 	private String descricao;
 	private Long codigo_categoria;
+
+	@OneToMany(mappedBy = "Livro")
+	Set<Livro> livros;
 
 	@Override
 	public String toString() {

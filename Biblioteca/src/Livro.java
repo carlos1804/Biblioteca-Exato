@@ -1,7 +1,17 @@
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+
 @Entity
-public class Livro implements Identificavel  {
+public class Livro implements Identificavel {
 	@Id
 	private String titulo;
 	private Long Id;
@@ -10,6 +20,16 @@ public class Livro implements Identificavel  {
 	private long ISBN;
 	private String autores;
 
+	@GeneratedValue(generator = "Livros_Autores", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "Livros_Autores", sequenceName = "Livros_Autores")
+	@ManyToMany
+	@JoinTable(name = "Livros_Autores", joinColumns = @JoinColumn(name = "id_livros"), inverseJoinColumns = @JoinColumn(name = "cpf_autores"))
+	private Set<Autores> autoress;
+
+
+	@OneToMany(mappedBy = "categoria")
+	Categoria categoria;
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -18,10 +38,12 @@ public class Livro implements Identificavel  {
 		this.titulo = titulo;
 	}
 
+	@Override
 	public Long getId() {
 		return Id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		Id = id;
 	}

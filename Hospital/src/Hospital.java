@@ -1,5 +1,6 @@
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Hospital implements Identificavel {
@@ -9,6 +10,14 @@ public class Hospital implements Identificavel {
 	private String municipio;
 	private String endereco;
 	private String estado;
+
+	@OneToMany(mappedBy = "bebe")
+	Bebe bebe;
+
+	
+	
+	@OneToMany(mappedBy = "bercario")
+	Bercario bercario;
 
 	public Long getId() {
 		return Id;

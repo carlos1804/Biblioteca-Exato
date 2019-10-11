@@ -1,5 +1,8 @@
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 @Entity
 
 public class Autores implements Identificavel {
@@ -8,6 +11,9 @@ public class Autores implements Identificavel {
 	private String nacionalidade;
 	private Long Id;
 
+	 @ManyToMany(mappedBy="autoress")
+	   private Set<Livro> livros;
+	 
 	public String getNome() {
 		return nome;
 	}

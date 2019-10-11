@@ -1,8 +1,13 @@
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 @Entity
-public class Bebe implements Identificavel{
-@Id
+public class Bebe implements Identificavel {
+	@Id
 	private Long Id;
 	private String nome;
 	private Long peso;
@@ -10,6 +15,12 @@ public class Bebe implements Identificavel{
 	private Double altura;
 	private String nome_da_mae;
 	private String Medico_responsavel;
+
+	@OneToMany(mappedBy = "hospital")
+	Hospital hospital;
+
+	@ManyToMany(mappedBy = "bebe")
+	private Set<Medico> medicoso;
 
 	public Long getId() {
 		return Id;
