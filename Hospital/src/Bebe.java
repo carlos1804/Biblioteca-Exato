@@ -20,7 +20,7 @@ public class Bebe implements Identificavel {
 	Hospital hospital;
 
 	@ManyToMany(mappedBy = "bebe")
-	private Set<Medico> medicoso;
+	private Set<Medico> medicos;
 
 	public Long getId() {
 		return Id;
